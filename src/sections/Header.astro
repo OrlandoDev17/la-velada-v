@@ -1,0 +1,35 @@
+---
+const navItems = [
+  {
+    title: 'Inicio',
+    url: '/#',
+  },
+  {
+    title: 'Contador',
+    url: '/#countdown',
+  },
+  {
+    title: 'Luchadores',
+    url: '/#fighters',
+  },
+  {
+    title: 'Galeria',
+    url: '/#gallery',
+  },
+];
+---
+
+<header class="flex justify-center pt-6 bg">
+  <nav class="flex gap-x-4">
+    {
+      navItems.map(({ title, url }) => (
+        <a
+          class="text-xl text-primary font-semibold uppercase hover:scale-110 transition"
+          href={url}
+        >
+          {title}
+        </a>
+      ))
+    }
+  </nav>
+</header>

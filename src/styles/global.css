@@ -1,0 +1,8 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-primary: #76535f;
+  --color-secondary: #222
+
+  --background-image-hero: url('./images/logo-la-velada-v.webp');
+}

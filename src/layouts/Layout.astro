@@ -1,22 +1,65 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+---
+import '../styles/global.css';
+import Header from '../sections/Header.astro';
+import Footer from '../sections/Footer.astro';
+import '@fontsource/average-sans';
+---
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>
+      La Velada del Año 5 | Evento de boxeo de streamers y creadores de
+      contenido
+    </title>
+    <meta
+      name="description"
+      content="La Velada del Año 5 es un evento de boxeo de streamers y creadores de contenido. ¡No te lo pierdas!"
+    />
+    <meta
+      name="keywords"
+      content="La Velada del Año 5, boxeo, streamers, creadores de contenido, evento, entretenimiento"
+    />
+
+    <meta name="author" content="Orlando López" />
+    <meta
+      property="og:title"
+      content="La Velada del Año 5 | Evento de boxeo de streamers y creadores de contenido"
+    />
+    <meta
+      property="og:description"
+      content="La Velada del Año 5 es un evento de boxeo de streamers y creadores de contenido. ¡No te lo pierdas!"
+    />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+
+  <style>
+    html {
+      background-color: hsla(142, 56%, 95%, 1);
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1036 1036' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"),
+        radial-gradient(
+          circle at 50% 100%,
+          hsla(91.99999999999952, 1%, 81%, 1) 0%,
+          transparent 150%
+        );
+      background-blend-mode: overlay, normal;
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Average Sans';
+      margin: 0;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</html>

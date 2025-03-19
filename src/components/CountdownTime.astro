@@ -1,0 +1,91 @@
+---
+const TIMESTAMP = 1753574400000;
+---
+
+<article class="flex pb-32" data-date={TIMESTAMP}>
+  <div class="flex flex-col items-center justify-center gap-y-2 w-16">
+    <span class="text-4xl tabular-nums text-primary" data-days>00</span>
+    <span class="text-xs text-center text-secondary tracking-wide uppercase"
+      >Dias</span
+    >
+  </div>
+
+  <span aria-hidden="true" class="mt-1 font-bold text-xl">:</span>
+
+  <div class="flex flex-col items-center justify-center gap-y-2 w-16">
+    <span class="text-4xl tabular-nums text-primary" data-hours>00</span>
+    <span class="text-xs text-center text-secondary tracking-wide uppercase"
+      >Horas</span
+    >
+  </div>
+
+  <span aria-hidden="true" class="mt-1 font-bold text-xl">:</span>
+
+  <div class="flex flex-col items-center justify-center gap-y-2 w-16">
+    <span class="text-4xl tabular-nums text-primary" data-minutes>00</span>
+    <span class="text-xs text-center text-secondary tracking-wide uppercase"
+      >Minutos</span
+    >
+  </div>
+
+  <span aria-hidden="true" class="mt-1 font-bold text-xl">:</span>
+
+  <div class="flex flex-col items-center justify-center gap-y-2 w-16">
+    <span class="text-4xl tabular-nums text-primary" data-seconds>00</span>
+    <span class="text-xs text-center text-secondary tracking-wide uppercase"
+      >Segundos</span
+    >
+  </div>
+</article>
+
+<script>
+  const SECOND = 1000;
+  const MINUTE = SECOND * 60;
+  const HOUR = MINUTE * 60;
+  const DAY = HOUR * 24;
+
+  function init() {
+    const $countdown = document.querySelector('[data-date]');
+    if (!$countdown) return;
+
+    const $days = $countdown.querySelector('[data-days]');
+    const $hours = $countdown.querySelector('[data-hours]');
+    const $minutes = $countdown.querySelector('[data-minutes]');
+    const $seconds = $countdown.querySelector('[data-seconds]');
+
+    const timestamp = $countdown.getAttribute('data-date');
+    if (!timestamp) return;
+
+    const date = new Date(+timestamp).getTime();
+
+    const formatTime = (time: number) => {
+      return Math.floor(time).toString().padStart(2, '0');
+    };
+
+    function updateCountdown() {
+      const now = Date.now();
+      const diff = date - now;
+
+      if ($days instanceof HTMLElement) {
+        $days.innerText = formatTime(diff / DAY);
+      }
+
+      if ($hours instanceof HTMLElement) {
+        $hours.innerText = formatTime((diff % DAY) / HOUR);
+      }
+
+      if ($minutes instanceof HTMLElement) {
+        $minutes.innerText = formatTime((diff % HOUR) / MINUTE);
+      }
+
+      if ($seconds instanceof HTMLElement) {
+        $seconds.innerText = formatTime((diff % MINUTE) / SECOND);
+      }
+    }
+
+    setInterval(updateCountdown, SECOND);
+    updateCountdown();
+  }
+
+  init();
+</script>
