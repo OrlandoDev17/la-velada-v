@@ -1,0 +1,87 @@
+---
+const TIMESTAMP = 1753574400000;
+import CountdownTime from './CountdownTime.astro';
+
+const COUNTDOWN_LABELS = [
+  {
+    className: 'data-days',
+    timeData: '00',
+    time: 'Dias',
+  },
+  {
+    className: 'data-hours',
+    timeData: '00',
+    time: 'Horas',
+  },
+  {
+    className: 'data-minutes',
+    timeData: '00',
+    time: 'Minutos',
+  },
+  {
+    className: 'data-seconds',
+    timeData: '00',
+    time: 'Segundos',
+  },
+];
+---
+
+<article class="flex" data-date={TIMESTAMP}>
+  {
+    COUNTDOWN_LABELS.map(({ className, timeData, time }) => (
+      <CountdownTime data={className} timeData={timeData} time={time} />
+    ))
+  }
+</article>
+
+<script>
+  const SECOND = 1000;
+  const MINUTE = SECOND * 60;
+  const HOUR = MINUTE * 60;
+  const DAY = HOUR * 24;
+
+  function init() {
+    const $countdown = document.querySelector('[data-date]');
+    if (!$countdown) return;
+
+    const $days = $countdown.querySelector('.data-days');
+    const $hours = $countdown.querySelector('.data-hours');
+    const $minutes = $countdown.querySelector('.data-minutes');
+    const $seconds = $countdown.querySelector('.data-seconds');
+
+    const timestamp = $countdown.getAttribute('data-date');
+    if (!timestamp) return;
+
+    const date = new Date(+timestamp).getTime();
+
+    const formatTime = (time: number) => {
+      return Math.floor(time).toString().padStart(2, '0');
+    };
+
+    function updateCountdown() {
+      const now = Date.now();
+      const diff = date - now;
+
+      if ($days instanceof HTMLElement) {
+        $days.innerText = formatTime(diff / DAY);
+      }
+
+      if ($hours instanceof HTMLElement) {
+        $hours.innerText = formatTime((diff % DAY) / HOUR);
+      }
+
+      if ($minutes instanceof HTMLElement) {
+        $minutes.innerText = formatTime((diff % HOUR) / MINUTE);
+      }
+
+      if ($seconds instanceof HTMLElement) {
+        $seconds.innerText = formatTime((diff % MINUTE) / SECOND);
+      }
+    }
+
+    setInterval(updateCountdown, SECOND);
+    updateCountdown();
+  }
+
+  init();
+</script>
