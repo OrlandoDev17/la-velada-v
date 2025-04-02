@@ -3,8 +3,11 @@ const { data, timeData, time } = Astro.props;
 ---
 
 <div class="flex flex-col items-center justify-center gap-y-2 w-24">
-  <span class={`text-5xl tabular-nums text-primary ${data}`}>{timeData}</span>
-  <span class="text-sm text-center text-secondary tracking-wide uppercase"
+  <span class={`text-4xl md:text-5xl tabular-nums text-primary ${data}`}
+    >{timeData}</span
+  >
+  <span
+    class="text-xs md:text-sm text-center text-secondary tracking-wide uppercase"
     >{time}</span
   >
 </div>

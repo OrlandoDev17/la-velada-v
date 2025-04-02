@@ -3,11 +3,13 @@ import SectionContainer from '../components/SectionContainer.astro';
 import CountdownData from '../components/CountdownData.astro';
 ---
 
-<SectionContainer id="countdown" className="mb-12">
+<SectionContainer id="countdown" className="mt-24 md:mt-0 mb-36 md:mb-12">
   <div
-    class="flex flex-col items-center gap-y-8 border-2 border-primary p-12 rounded-xl shadow-2xl"
+    class="flex flex-col items-center gap-y-8 border-2 border-primary py-6 px-2 md:p-12 rounded-xl shadow-2xl"
   >
-    <h2 class="text-6xl uppercase text-primary font-bold">Tiempo Restante</h2>
+    <h2 class="text-4xl md:text-6xl uppercase text-primary font-bold">
+      Tiempo Restante
+    </h2>
     <CountdownData />
   </div>
 </SectionContainer>
